@@ -1,42 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Persian Software Company Design System */
 @layer base {
   :root {
+    /* Core Brand Colors - Persian Blue Theme */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 215 25% 15%;
+    
+    /* Persian Blue Primary Palette */
+    --primary: 217 71% 53%;
+    --primary-dark: 217 80% 45%;
+    --primary-light: 217 45% 75%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Warm Neutral Secondary */
+    --secondary: 210 17% 96%;
+    --secondary-dark: 210 20% 88%;
+    --secondary-foreground: 215 25% 25%;
+    
+    /* Subtle Gold Accents */
+    --accent: 43 84% 60%;
+    --accent-light: 43 74% 75%;
+    --accent-foreground: 215 25% 15%;
+    
+    /* Persian Gray Scale */
+    --muted: 210 15% 95%;
+    --muted-dark: 210 15% 90%;
+    --muted-foreground: 215 15% 55%;
+    
+    /* Professional Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-border: 210 20% 92%;
+    --card-foreground: 215 25% 20%;
+    
+    /* Interactive Elements */
+    --border: 210 20% 88%;
+    --input: 210 20% 96%;
+    --ring: 217 71% 53%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 215 25% 15%;
+    
+    /* Status Colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 71% 53%), hsl(217 80% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 71% 53%), hsl(217 80% 45%), hsl(43 84% 60%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 17% 98%));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(217 71% 53% / 0.08);
+    --shadow-medium: 0 8px 32px -4px hsl(217 71% 53% / 0.12);
+    --shadow-strong: 0 16px 64px -8px hsl(217 71% 53% / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +128,89 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-vazir;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  }
+
+  [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+
+  [dir="rtl"] .ltr-content {
+    direction: ltr;
+    text-align: left;
+  }
+}
+
+@layer components {
+  /* Persian Typography System */
+  .persian-heading {
+    @apply font-vazir font-semibold text-foreground;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .persian-body {
+    @apply font-vazir text-foreground;
+    line-height: 1.8;
+  }
+
+  /* Hero Button Variants */
+  .btn-hero-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark text-primary-foreground;
+    @apply px-8 py-4 rounded-lg font-medium;
+    @apply shadow-lg hover:shadow-xl;
+    @apply transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  .btn-hero-secondary {
+    @apply bg-transparent border-2 border-primary text-primary;
+    @apply px-8 py-4 rounded-lg font-medium;
+    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply transition-all duration-300;
+  }
+
+  /* Service Cards */
+  .service-card {
+    @apply bg-card border border-card-border rounded-xl p-8;
+    @apply hover:shadow-medium transition-all duration-300;
+    @apply hover:-translate-y-2;
+  }
+
+  /* Portfolio Cards */
+  .portfolio-card {
+    @apply bg-card border border-card-border rounded-xl overflow-hidden;
+    @apply hover:shadow-strong transition-all duration-500;
+    @apply group cursor-pointer;
+  }
+
+  /* Animations */
+  .fade-in-up {
+    @apply animate-in slide-in-from-bottom-4 duration-700;
+  }
+
+  .fade-in-scale {
+    @apply animate-in fade-in zoom-in-95 duration-500;
+  }
+
+  /* RTL-specific adjustments */
+  [dir="rtl"] .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  [dir="rtl"] .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  [dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  [dir="rtl"] .text-right {
+    text-align: left;
   }
 }
