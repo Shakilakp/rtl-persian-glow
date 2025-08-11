@@ -1,46 +1,49 @@
-import { Target, Eye, Users, Award, Lightbulb, Shield } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Target, Eye, Users, Award, Lightbulb, Shield } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const About = () => {
   const values = [
     {
       icon: Lightbulb,
-      title: 'نوآوری',
-      description: 'همیشه در جستجوی راه‌حل‌های خلاقانه و مدرن هستیم'
+      title: "نوآوری",
+      description: "همیشه در جستجوی راه‌حل‌های خلاقانه و مدرن هستیم",
     },
     {
       icon: Shield,
-      title: 'کیفیت',
-      description: 'تحویل بهترین محصول با استانداردهای بالا'
+      title: "کیفیت",
+      description: "تحویل بهترین محصول با استانداردهای بالا",
     },
     {
       icon: Users,
-      title: 'همکاری',
-      description: 'کار تیمی و همکاری نزدیک با مشتریان'
+      title: "همکاری",
+      description: "کار تیمی و همکاری نزدیک با مشتریان",
     },
     {
       icon: Award,
-      title: 'تعهد',
-      description: 'پایبندی به زمان‌بندی و کیفیت پروژه‌ها'
-    }
+      title: "تعهد",
+      description: "پایبندی به زمان‌بندی و کیفیت پروژه‌ها",
+    },
   ];
 
   const team = [
     {
-      name: 'علی محمدی',
-      role: 'مدیر فنی',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face'
+      name: "علی محمدی",
+      role: "مدیر فنی",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
     },
     {
-      name: 'سارا احمدی',
-      role: 'تحلیلگر ارشد',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b898?w=300&h=300&fit=crop&crop=face'
+      name: "سارا احمدی",
+      role: "تحلیلگر ارشد",
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b898?w=300&h=300&fit=crop&crop=face",
     },
     {
-      name: 'رضا حسینی',
-      role: 'توسعه‌دهنده ارشد',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face'
-    }
+      name: "رضا حسینی",
+      role: "توسعه‌دهنده ارشد",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+    },
   ];
 
   return (
@@ -50,10 +53,11 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center fade-in-up">
             <h1 className="persian-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
-              درباره شرکت نوین تک
+              درباره شرکت ویراپ
             </h1>
             <p className="persian-body text-xl text-muted-foreground leading-relaxed">
-              ما تیمی از متخصصان با تجربه هستیم که با شور و اشتیاق، راه‌حل‌های فناوری پیشرفته ارائه می‌دهیم
+              ما تیمی از متخصصان با تجربه هستیم که با شور و اشتیاق، راه‌حل‌های
+              فناوری پیشرفته ارائه می‌دهیم
             </p>
           </div>
         </div>
@@ -69,23 +73,25 @@ const About = () => {
               </h2>
               <div className="space-y-6 persian-body text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  شرکت نوین تک در سال ۱۳۹۸ با هدف ارائه خدمات مدرن فناوری اطلاعات تأسیس شد. 
-                  ما با تیمی از متخصصان مجرب، همیشه در تلاش برای ارائه بهترین راه‌حل‌ها هستیم.
+                  شرکت نوین تک در سال ۱۴۰۱ با هدف ارائه خدمات مدرن فناوری
+                  اطلاعات تأسیس شد. ما با تیمی از متخصصان مجرب، همیشه در تلاش
+                  برای ارائه بهترین راه‌حل‌ها هستیم.
                 </p>
                 <p>
-                  از ابتدای تأسیس تا کنون، بیش از ۳۰۰ پروژه موفق را به انجام رسانده‌ایم و 
-                  توانسته‌ایم اعتماد بیش از ۱۰۰ شرکت و سازمان را جلب کنیم.
+                  از ابتدای تأسیس تا کنون، بیش از ۳۰۰ پروژه موفق را به انجام
+                  رسانده‌ایم و توانسته‌ایم اعتماد بیش از ۱۰۰ شرکت و سازمان را
+                  جلب کنیم.
                 </p>
                 <p>
-                  امروز ما به عنوان یکی از شرکت‌های پیشرو در زمینه توسعه نرم‌افزار و 
-                  هوش تجاری شناخته می‌شویم.
+                  امروز ما به عنوان یکی از شرکت‌های پیشرو در زمینه توسعه
+                  نرم‌افزار و هوش تجاری شناخته می‌شویم.
                 </p>
               </div>
             </div>
             <div className="fade-in-scale">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
-                alt="تیم نوین تک"
+                alt="تیم ویراپ"
                 className="rounded-2xl shadow-strong w-full object-cover"
               />
             </div>
@@ -105,8 +111,8 @@ const About = () => {
                 ماموریت ما
               </h3>
               <p className="persian-body text-muted-foreground leading-relaxed">
-                ارائه راه‌حل‌های فناوری نوآورانه و باکیفیت که به رشد و موفقیت کسب‌وکارها کمک کند 
-                و ارزش واقعی برای مشتریان ایجاد کند.
+                ارائه راه‌حل‌های فناوری نوآورانه و باکیفیت که به رشد و موفقیت
+                کسب‌وکارها کمک کند و ارزش واقعی برای مشتریان ایجاد کند.
               </p>
             </Card>
 
@@ -118,8 +124,8 @@ const About = () => {
                 چشم‌انداز ما
               </h3>
               <p className="persian-body text-muted-foreground leading-relaxed">
-                تبدیل شدن به پیشرو منطقه در ارائه خدمات فناوری اطلاعات و شریک اصلی 
-                شرکت‌ها در مسیر تحول دیجیتال.
+                تبدیل شدن به پیشرو منطقه در ارائه خدمات فناوری اطلاعات و شریک
+                اصلی شرکت‌ها در مسیر تحول دیجیتال.
               </p>
             </Card>
           </div>
@@ -140,7 +146,10 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-medium transition-all duration-300">
+              <Card
+                key={index}
+                className="p-6 text-center hover:shadow-medium transition-all duration-300"
+              >
                 <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <value.icon className="w-8 h-8 text-primary" />
                 </div>
@@ -170,7 +179,10 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-medium transition-all duration-300">
+              <Card
+                key={index}
+                className="overflow-hidden hover:shadow-medium transition-all duration-300"
+              >
                 <img
                   src={member.image}
                   alt={member.name}

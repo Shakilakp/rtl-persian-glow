@@ -1,5 +1,13 @@
-import { Link } from 'react-router-dom';
-import { Code, Mail, Phone, MapPin, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Link } from "react-router-dom";
+import {
+  Code,
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -10,22 +18,27 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Code className="w-8 h-8 text-accent" />
-              <span className="persian-heading text-xl font-bold">نوین تک</span>
+              <span className="persian-heading text-xl font-bold text-accent">
+                ویرا افزار پاسارگاد
+              </span>
             </div>
             <p className="persian-body text-background/80 leading-relaxed">
-              شرکت پیشرو در ارائه خدمات توسعه نرم‌افزار، هوش تجاری و تحلیل داده با تیمی از متخصصان مجرب
+              شرکت پیشرو در ارائه خدمات توسعه نرم‌افزار، هوش تجاری و تحلیل داده
+              با تیمی از متخصصان مجرب
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="persian-heading text-lg font-semibold">لینک‌های سریع</h3>
+            <h3 className="persian-heading text-lg font-semibold">
+              لینک‌های سریع
+            </h3>
             <ul className="space-y-2">
               {[
-                { path: '/', label: 'خانه' },
-                { path: '/about', label: 'درباره ما' },
-                { path: '/services', label: 'خدمات' },
-                { path: '/portfolio', label: 'نمونه کارها' },
+                { path: "/", label: "خانه" },
+                { path: "/about", label: "درباره ما" },
+                { path: "/services", label: "خدمات" },
+                { path: "/portfolio", label: "نمونه کارها" },
               ].map((item) => (
                 <li key={item.path}>
                   <Link
@@ -52,28 +65,36 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="persian-heading text-lg font-semibold">تماس با ما</h3>
+            <h3 className="persian-heading text-lg font-semibold">
+              تماس با ما
+            </h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <span className="persian-body text-background/80 ltr-content">021-88776655</span>
+                <span className="persian-body text-background/80 ltr-content">
+                  021-86096368
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent" />
-                <span className="persian-body text-background/80 ltr-content">info@novintech.ir</span>
+                <span className="persian-body text-background/80 ltr-content">
+                  info.viraap.co
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-accent" />
-                <span className="persian-body text-background/80">تهران، ولیعصر، پلاک ۱۲۳</span>
+                <span className="persian-body text-background/80">
+                  تهران، کارگر شمالی، خیابان نهم، پلاک ۸۲، واحد ۱
+                </span>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               {[
-                { icon: Instagram, href: '#' },
-                { icon: Linkedin, href: '#' },
-                { icon: Twitter, href: '#' },
+                { icon: Instagram, href: "#" },
+                { icon: Linkedin, href: "#" },
+                { icon: Twitter, href: "#" },
               ].map((social, index) => (
                 <a
                   key={index}
@@ -90,7 +111,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 text-center">
           <p className="persian-body text-background/60">
-            © ۱۴۰۳ شرکت نوین تک. تمامی حقوق محفوظ است.
+            © ۱۴۰۳ شرکت ویراپ تمامی حقوق محفوظ است.
           </p>
         </div>
       </div>

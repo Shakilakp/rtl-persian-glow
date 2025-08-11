@@ -1,31 +1,41 @@
-import { ArrowLeft, ChevronDown, BarChart3, Code2, Database, Users, Award, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import {
+  ArrowLeft,
+  ChevronDown,
+  BarChart3,
+  Code2,
+  Database,
+  Users,
+  Award,
+  Clock,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const Home = () => {
   const stats = [
-    { icon: Users, value: '۱۰۰+', label: 'مشتری راضی' },
-    { icon: Award, value: '۳۰۰+', label: 'پروژه موفق' },
-    { icon: Clock, value: '۵+', label: 'سال تجربه' },
-    { icon: Code2, value: '۲۴/۷', label: 'پشتیبانی' },
+    { icon: Users, value: "۱۰۰+", label: "مشتری راضی" },
+    { icon: Award, value: "۳۰۰+", label: "پروژه موفق" },
+    { icon: Clock, value: "۵+", label: "سال تجربه" },
+    { icon: Code2, value: "۲۴/۷", label: "پشتیبانی" },
   ];
 
   const features = [
     {
       icon: BarChart3,
-      title: 'هوش تجاری',
-      description: 'تبدیل داده‌های خام به بینش‌های قابل اجرا برای تصمیم‌گیری بهتر'
+      title: "هوش تجاری",
+      description:
+        "تبدیل داده‌های خام به بینش‌های قابل اجرا برای تصمیم‌گیری بهتر",
     },
     {
       icon: Code2,
-      title: 'توسعه نرم‌افزار',
-      description: 'طراحی و توسعه راه‌حل‌های نرم‌افزاری مدرن و قابل اعتماد'
+      title: "توسعه نرم‌افزار",
+      description: "طراحی و توسعه راه‌حل‌های نرم‌افزاری مدرن و قابل اعتماد",
     },
     {
       icon: Database,
-      title: 'تحلیل داده',
-      description: 'استخراج الگوها و روندهای مهم از داده‌های پیچیده شما'
-    }
+      title: "تحلیل داده",
+      description: "استخراج الگوها و روندهای مهم از داده‌های پیچیده شما",
+    },
   ];
 
   return (
@@ -33,25 +43,32 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/50"></div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-8 fade-in-up">
             <h1 className="persian-heading text-5xl md:text-7xl font-bold text-white mb-6">
-              آینده
-              <span className="text-accent block md:inline md:mr-4">دیجیتال</span>
-              را با ما بسازید
+              <span className="text-accent block md:inline md:mr-4">
+                ویراپ&nbsp;
+              </span>
+              ابزارهایی ارائه می دهد که بهره وری را افزایش و مدیریت را بهینه می
+              کند
             </h1>
-            
+
             <p className="persian-body text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto">
-              شرکت پیشرو در توسعه نرم‌افزار، هوش تجاری و تحلیل داده با تیمی از متخصصان مجرب
+              شرکت پیشرو در توسعه نرم‌افزار، هوش تجاری و تحلیل داده با تیمی از
+              متخصصان مجرب
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Button size="lg" className="btn-hero-primary text-lg px-8 py-4">
                 شروع همکاری
                 <ArrowLeft className="w-5 h-5 mr-2" />
               </Button>
-              <Button size="lg" variant="outline" className="btn-hero-secondary text-lg px-8 py-4">
+              <Button
+                size="lg"
+                variant="outline"
+                className="btn-hero-secondary text-lg px-8 py-4"
+              >
                 مشاهده نمونه کارها
               </Button>
             </div>
@@ -73,8 +90,12 @@ const Home = () => {
                 <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-8 h-8 text-primary" />
                 </div>
-                <div className="persian-heading text-3xl font-bold text-foreground mb-2">{stat.value}</div>
-                <div className="persian-body text-muted-foreground">{stat.label}</div>
+                <div className="persian-heading text-3xl font-bold text-foreground mb-2">
+                  {stat.value}
+                </div>
+                <div className="persian-body text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -89,7 +110,8 @@ const Home = () => {
               خدمات حرفه‌ای ما
             </h2>
             <p className="persian-body text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              با استفاده از جدیدترین تکنولوژی‌ها، راه‌حل‌های نوآورانه ارائه می‌دهیم
+              با استفاده از جدیدترین تکنولوژی‌ها، راه‌حل‌های نوآورانه ارائه
+              می‌دهیم
             </p>
           </div>
 
@@ -121,7 +143,11 @@ const Home = () => {
             <p className="persian-body text-xl mb-8 text-white/90 leading-relaxed">
               با تیم متخصص ما تماس بگیرید و پروژه‌تان را به واقعیت تبدیل کنید
             </p>
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg"
+            >
               تماس با ما
               <ArrowLeft className="w-5 h-5 mr-2" />
             </Button>

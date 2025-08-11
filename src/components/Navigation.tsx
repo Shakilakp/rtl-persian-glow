@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Code, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'خانه' },
-    { path: '/about', label: 'درباره ما' },
-    { path: '/services', label: 'خدمات' },
-    { path: '/portfolio', label: 'نمونه کارها' },
-    { path: '/contact', label: 'تماس با ما' },
+    { path: "/", label: "خانه" },
+    { path: "/about", label: "درباره ما" },
+    { path: "/services", label: "خدمات" },
+    { path: "/portfolio", label: "نمونه کارها" },
+    { path: "/contact", label: "تماس با ما" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -22,9 +22,12 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-primary font-bold text-xl">
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-primary font-bold text-xl"
+          >
             <Code className="w-8 h-8" />
-            <span className="persian-heading">نوین تک</span>
+            <span className="persian-heading">ویرا افزار پاسارگاد</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,8 +38,8 @@ const Navigation = () => {
                 to={item.path}
                 className={`persian-body text-sm font-medium transition-colors duration-200 ${
                   isActive(item.path)
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -67,17 +70,15 @@ const Navigation = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-3 rounded-lg persian-body transition-colors ${
                     isActive(item.path)
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
                   {item.label}
                 </Link>
               ))}
               <div className="px-4 pt-2">
-                <Button className="w-full btn-hero-primary">
-                  شروع پروژه
-                </Button>
+                <Button className="w-full btn-hero-primary">شروع پروژه</Button>
               </div>
             </div>
           </div>
