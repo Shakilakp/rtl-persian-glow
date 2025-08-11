@@ -183,7 +183,7 @@
   .portfolio-card {
     @apply bg-card border border-card-border rounded-xl overflow-hidden;
     @apply hover:shadow-strong transition-all duration-500;
-    @apply group cursor-pointer;
+    @apply cursor-pointer;
   }
 
   /* Animations */
