@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import {
   Mail,
   Phone,
@@ -7,35 +10,78 @@ import {
   Send,
   User,
   MessageSquare,
+  Loader2,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "نام باید حداقل ۲ کاراکتر باشد"),
+  email: z.string().email("ایمیل معتبر وارد کنید"),
+  phone: z.string().min(10, "شماره تلفن معتبر وارد کنید"),
+  subject: z.string().min(1, "لطفاً موضوع را انتخاب کنید"),
+  message: z.string().min(10, "پیام باید حداقل ۱۰ کاراکتر باشد"),
+});
+
+type ContactForm = z.infer<typeof contactSchema>;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-  };
+  const handleSubmit = async (data: ContactForm) => {
+    setLoading(true);
+    try {
+      // Save to database
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([data]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+      if (dbError) {
+        throw dbError;
+      }
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: data,
+      });
+
+      if (emailError) {
+        console.warn('Email notification failed:', emailError);
+        // Don't throw error as the main submission was successful
+      }
+
+      toast({
+        title: "پیام شما ارسال شد",
+        description: "تشکر از تماس شما. در اسرع وقت پاسخ خواهیم داد.",
+      });
+
+      form.reset();
+    } catch (error: any) {
+      toast({
+        title: "خطا در ارسال پیام",
+        description: error.message || "مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -134,7 +180,7 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="persian-body">
@@ -144,15 +190,16 @@ const Contact = () => {
                         <User className="absolute right-3 top-3 w-4 h-4 text-muted-foreground" />
                         <Input
                           id="name"
-                          name="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={handleChange}
+                          {...form.register("name")}
                           className="pr-10"
                           placeholder="نام خود را وارد کنید"
-                          required
                         />
                       </div>
+                      {form.formState.errors.name && (
+                        <p className="text-sm text-destructive persian-body">
+                          {form.formState.errors.name.message}
+                        </p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
@@ -163,15 +210,16 @@ const Contact = () => {
                         <Phone className="absolute right-3 top-3 w-4 h-4 text-muted-foreground" />
                         <Input
                           id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
+                          {...form.register("phone")}
                           className="pr-10 ltr-content"
                           placeholder="09123456789"
-                          required
                         />
                       </div>
+                      {form.formState.errors.phone && (
+                        <p className="text-sm text-destructive persian-body">
+                          {form.formState.errors.phone.message}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -183,15 +231,17 @@ const Contact = () => {
                       <Mail className="absolute right-3 top-3 w-4 h-4 text-muted-foreground" />
                       <Input
                         id="email"
-                        name="email"
                         type="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        {...form.register("email")}
                         className="pr-10 ltr-content"
                         placeholder="example@email.com"
-                        required
                       />
                     </div>
+                    {form.formState.errors.email && (
+                      <p className="text-sm text-destructive persian-body">
+                        {form.formState.errors.email.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -200,16 +250,8 @@ const Contact = () => {
                     </Label>
                     <select
                       id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          subject: e.target.value,
-                        }))
-                      }
+                      {...form.register("subject")}
                       className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground persian-body"
-                      required
                     >
                       <option value="">انتخاب کنید...</option>
                       {services.map((service, index) => (
@@ -219,6 +261,11 @@ const Contact = () => {
                       ))}
                       <option value="other">سایر موارد</option>
                     </select>
+                    {form.formState.errors.subject && (
+                      <p className="text-sm text-destructive persian-body">
+                        {form.formState.errors.subject.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -229,18 +276,24 @@ const Contact = () => {
                       <MessageSquare className="absolute right-3 top-3 w-4 h-4 text-muted-foreground" />
                       <Textarea
                         id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
+                        {...form.register("message")}
                         className="pr-10 min-h-32"
                         placeholder="پیام خود را اینجا بنویسید..."
-                        required
                       />
                     </div>
+                    {form.formState.errors.message && (
+                      <p className="text-sm text-destructive persian-body">
+                        {form.formState.errors.message.message}
+                      </p>
+                    )}
                   </div>
 
-                  <Button type="submit" className="w-full btn-hero-primary">
-                    <Send className="w-5 h-5 ml-2" />
+                  <Button type="submit" className="w-full btn-hero-primary" disabled={loading}>
+                    {loading ? (
+                      <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                    ) : (
+                      <Send className="w-5 h-5 ml-2" />
+                    )}
                     ارسال پیام
                   </Button>
                 </form>

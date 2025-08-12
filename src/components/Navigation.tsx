@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Code, ChevronDown } from "lucide-react";
+import { Menu, X, Code, Shield, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
 
   const navItems = [
     { path: "/", label: "خانه" },
@@ -45,9 +47,32 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="btn-hero-primary">
-              شروع پروژه
-            </Button>
+            
+            {/* Auth Section */}
+            <div className="flex items-center gap-2">
+              {user ? (
+                <>
+                  {isAdmin() && (
+                    <Link to="/admin">
+                      <Button variant="outline" size="sm">
+                        <Shield className="w-4 h-4 ml-2" />
+                        پنل مدیریت
+                      </Button>
+                    </Link>
+                  )}
+                  <Button variant="ghost" size="sm" onClick={signOut}>
+                    <LogOut className="w-4 h-4 ml-2" />
+                    خروج
+                  </Button>
+                </>
+              ) : (
+                <Link to="/auth">
+                  <Button variant="outline" size="sm">
+                    ورود / ثبت نام
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,8 +102,39 @@ const Navigation = () => {
                   {item.label}
                 </Link>
               ))}
-              <div className="px-4 pt-2">
-                <Button className="w-full btn-hero-primary">شروع پروژه</Button>
+              
+              {/* Mobile Auth Section */}
+              <div className="px-4 pt-2 border-t mt-2 space-y-2">
+                {user ? (
+                  <>
+                    {isAdmin() && (
+                      <Link to="/admin" onClick={() => setIsOpen(false)}>
+                        <Button variant="outline" size="sm" className="w-full">
+                          <Shield className="w-4 h-4 ml-2" />
+                          پنل مدیریت
+                        </Button>
+                      </Link>
+                    )}
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="w-full" 
+                      onClick={() => {
+                        signOut();
+                        setIsOpen(false);
+                      }}
+                    >
+                      <LogOut className="w-4 h-4 ml-2" />
+                      خروج
+                    </Button>
+                  </>
+                ) : (
+                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                    <Button variant="outline" size="sm" className="w-full">
+                      ورود / ثبت نام
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
